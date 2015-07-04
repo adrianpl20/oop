@@ -9,7 +9,6 @@ class Controller_Start extends Controller_Base {
   
   public function index()
   { 
-    
     // wybieram widok
     $this->view = View::factory('template');
     

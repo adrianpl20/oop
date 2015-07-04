@@ -1,6 +1,9 @@
 <?php
 
   $start_controller = 'start';
-  $modules = array('session', 'database');
+  $modules = array(
+    'session',
+    'database',
+  );
 
 ?>

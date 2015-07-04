@@ -56,11 +56,11 @@
   
   if(isset($_GET['controller']))
   {
-    $get_controller = $_GET['controller'];
+    $get_controller = basename($_GET['controller']);
   }
   if(isset($_GET['action']))
   {
-    $get_action = $_GET['action'];
+    $get_action = basename($_GET['action']);
   }
   
   if(empty($get_controller))
