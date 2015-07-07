@@ -14,6 +14,7 @@
   Library::load('router');
   Library::load('exception404');
   Library::load('session');
+  Library::load('html');
   
   include_once 'app/bootstrap.php';
   

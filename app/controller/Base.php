@@ -6,7 +6,7 @@ class Controller_Base {
 
   public function before()
   {
-    // ladowanie modulow, np. od logowania, sesja
+    // --- Ladowanie modulow, np. od logowania, sesja ---
     global $modules;
     
     if(!empty($modules) AND is_array($modules))
@@ -23,9 +23,16 @@ class Controller_Base {
   
   public function after()
   {
-    // wyswietlam widok
     if($this->view instanceof View)
     {
+      // -- CSS i Javascript --
+      $this->view->_script = array();
+      
+      $this->view->_style = array(
+        'media/style.css'
+      );  
+        
+      // -- Wyswietlam widok --
       $this->view->render();
     }
     else
