@@ -22,9 +22,11 @@ class Database {
         die('Nie udalo sie polaczyc z baza danych: '.$e->getMessage());
       }
     }
-    
     return self::$instance;  
   }
+}
+
+class DB extends Database {
 }
 
 ?>

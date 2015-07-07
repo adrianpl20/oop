@@ -4,12 +4,18 @@
   define('DIR_MODEL', 'app/model/');
   define('DIR_VIEW', 'app/view/');
   define('DIR_VIEWS', 'app/views/');
+  define('DIR_LIB', 'app/lib/');
   define('DIR_MODULES', 'app/modules/');
   
-  include_once 'app/bootstrap.php';
-  
   include_once DIR_VIEW.'View.php';
+  include_once DIR_LIB.'Library.php';
   include_once DIR_MODULES.'Module.php';
+  Library::load('route');
+  Library::load('router');
+  Library::load('exception404');
+  Library::load('session');
+  
+  include_once 'app/bootstrap.php';
   
 
   function __autoload($classname)
@@ -30,7 +36,8 @@
       }
       else
       {
-        throw new Exception('Nie znaleziono kontrolera: '.$classname);
+        //throw new Exception('Nie znaleziono kontrolera: '.$classname);
+        throw new Exception404;
       }
     }
     else if(strtolower($temp[0]) === 'model')
@@ -50,42 +57,30 @@
     }
   }
   
-  
-  $get_controller = NULL;
-  $get_action = NULL;
-  
-  if(isset($_GET['controller']))
-  {
-    $get_controller = basename($_GET['controller']);
-  }
-  if(isset($_GET['action']))
-  {
-    $get_action = basename($_GET['action']);
-  }
-  
-  if(empty($get_controller))
-  {
-    $get_controller = (isset($start_controller) AND file_exists(DIR_CONTROLLER.$start_controller.'.php')) ? $start_controller : 'base';
-  }
-  if(empty($get_action))
-  {
-    $get_action = 'index';
-  }
-  
-  
   try
   {
+    // Router
+    $router = Router::instance($_SERVER['REQUEST_URI']);
+    $router->matchRoute();
+    // ----
+    
+    $get_controller = basename($_GET['controller']);
+    $get_action = basename($_GET['action']);
+  
+    
     $tmp = 'Controller_'.ucfirst(strtolower($get_controller));
     $controller = new $tmp();
   
     $controller->before();
-    $tmp = strtolower($get_action);
+    $tmp = 'action_'.strtolower($get_action);
     $controller->$tmp();
     $controller->after();
   }
   catch(Exception $e)
   {
     echo $e->getMessage();
+    //echo '<br />Plik: '.$e->getFile();
+    //echo '<br />Linia: '.$e->getLine();
   }
 
 ?>

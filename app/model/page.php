@@ -9,7 +9,7 @@ class Model_Page {
   
   public function getList()
   {
-    $db = Database::instance()->query('SELECT user FROM `uzytkownicy`');
+    $db = DB::instance()->query('SELECT user FROM `uzytkownicy`');
     $result = $db->fetchAll();
     $db->closeCursor();
     unset($db);

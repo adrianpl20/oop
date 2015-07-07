@@ -21,11 +21,6 @@ class Controller_Base {
     Session::instance()->start();
   }
   
-  public function index()
-  {
-  
-  }
-  
   public function after()
   {
     // wyswietlam widok
@@ -37,6 +32,16 @@ class Controller_Base {
     {
       throw new Exception('Nie ustawiono zadnego widoku do wyswietlenia.');
     }
+  }
+  
+  public function __call($method, $args)
+  {
+      throw new Exception('Nie znaleziono metody: '.$method.'.');
+  }
+  
+  public static function __callStatic($method, $args)
+  {
+      throw new Exception('Nie znaleziono metody statycznej: '.$method.'.');
   }
 }
 

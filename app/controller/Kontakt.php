@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Start extends Controller_Base {
+class Controller_Kontakt extends Controller_Base {
   
   public function before()
   {
@@ -13,11 +13,8 @@ class Controller_Start extends Controller_Base {
     $this->view = View::factory('template');
     
     // ustawiam dane w widoku
-    $model_Page = new Model_Page;
-    
     $this->view->title = 'Strona Glowna';
-    $this->view->content = View::factory('start/index');
-    $this->view->content->users = $model_Page->getList();
+    $this->view->content = View::factory('kontakt/index');
   }
   
   public function after()

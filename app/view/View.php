@@ -29,6 +29,15 @@ class View {
       include_once DIR_VIEWS.$this->template.'.php';
     }
   }
+  
+  public function __toString()
+  {
+    ob_start();
+    
+    $this->render();
+    
+    return ob_get_clean();
+  }
 }
 
 ?>
