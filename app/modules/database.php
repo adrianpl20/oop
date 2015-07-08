@@ -14,7 +14,7 @@ class Database {
     {
       try
       {
-        self::$instance = new PDO('mysql:host=localhost;dbname=projekt', 'root', '');
+        self::$instance = new PDO('mysql:host=localhost;dbname=oop', 'root', '');
         self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       }
       catch(PDOException $e)

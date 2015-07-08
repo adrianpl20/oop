@@ -1,6 +1,6 @@
 <?php
 
-class Controller_Kontakt extends Controller_Base {
+class Controller_Contact extends Controller_Base {
   
   public function before()
   {
@@ -13,7 +13,7 @@ class Controller_Kontakt extends Controller_Base {
     $this->view = View::factory('template');
     
     // ustawiam dane w widoku
-    $this->view->title = 'Strona Glowna';
+    $this->view->title = 'Kontakt';
     $this->view->content = View::factory('kontakt/index');
   }
   

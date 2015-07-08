@@ -1,10 +1,14 @@
-<a href="<?php echo Route::generateURI('default', array('controller' => 'start', 'action' => 'lamus')); ?>">Strona glowna</a>
-<a href="<?php echo Route::generateURI('costam', array('controller' => 'kontakt')); ?>">Kontakt</a>
+<h3>Artykuły</h3>
 
-<h4>Uzytkownicy</h4>
-  <?php
-    foreach($this->users as $value)
-    {
-      echo $value['user'].'<br />';
-    }
-  ?>
+<?php if(!empty($this->news)): ?>
+    <?php foreach($this->news as $value): ?>
+        <div>
+            <h2><a href="<?php echo Route::generateURI('news', array('controller' => 'news', 'action' => 'view', 'id' => $value['id'])); ?>"><?php echo $value['title']; ?></a></h2>
+            <p><?php echo $value['text']; ?></p>
+            <h5 style="border-bottom: 1px solid #aaa"><?php echo $value['date']; ?></h5>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p>Brak artykułów do wyświetlenia.</p>
+<?php endif; ?>
+

@@ -1,15 +1,20 @@
 <?php
 
-  $start_controller = 'start';
   $modules = array(
     'database',
+    'auth'
   );
   
   // Routing
+  Route::add('news', '<controller>/<action>/<id>',
+          array(
+              'controller' => 'news',
+              'action' => 'view'
+          ));
   Route::add('rozmowa', 'telefon(/<action>)',
           array(
-              'controller' => 'kontakt',
-              'action' => 'gunwo'
+              'controller' => 'contact',
+              'action' => 'index'
           ));
   Route::add('costam', '<controller>',
           array(

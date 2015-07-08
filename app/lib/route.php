@@ -42,7 +42,7 @@ class Route {
         }
         
         $uri = str_replace(array('(', ')'), '', $expr);
-        return str_replace(array_keys($data3), $data3, $uri);
+        return '/'.str_replace(array_keys($data3), $data3, $uri);
     }
 }
 

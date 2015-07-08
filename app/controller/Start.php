@@ -9,15 +9,16 @@ class Controller_Start extends Controller_Base {
   
   public function action_index()
   { 
+    $model_News = new Model_News;
+    
     // wybieram widok
     $this->view = View::factory('template');
     
     // ustawiam dane w widoku
-    $model_Page = new Model_Page;
-    
-    $this->view->title = 'Strona Glowna';
+    $this->view->title = 'Strona Główna';
     $this->view->content = View::factory('start/index');
-    $this->view->content->users = $model_Page->getList();
+    
+    $this->view->content->news = $model_News->getAll();
   }
   
   public function after()

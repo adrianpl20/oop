@@ -3,6 +3,7 @@
 class Controller_Base {
 
   protected $view;
+  protected $logged = FALSE;
 
   public function before()
   {
@@ -19,6 +20,9 @@ class Controller_Base {
     
     // --- Start sesji uzytkownika ---
     Session::instance()->start();
+    
+    // --- Sprawdzam czy uzytkownik jest zalogowany ---
+    $this->logged = Auth::instance()->is_logged();
   }
   
   public function after()
@@ -29,8 +33,11 @@ class Controller_Base {
       $this->view->_script = array();
       
       $this->view->_style = array(
-        'media/style.css'
-      );  
+        '/media/style.css'
+      );
+      
+      // -- Wstawiam dodatkowe dane do widoku --
+      $this->view->logged = $this->logged;
         
       // -- Wyswietlam widok --
       $this->view->render();
